@@ -28,7 +28,44 @@
             @endif
 
             <div class="max-w-7xl mx-auto p-6 lg:p-8">
-                
+              <div class="grid grid-cols-3 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  @foreach ($guests as $guest)
+                    <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                      <div class="md:flex">
+                        <div class="p-8">
+                          <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{{ $guest->name }}</div>
+                          <p class="mt-2 text-gray-500">{{ $guest->note }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  @endforeach
+                </div>
+
+                <h1 class="mt-5">Guest Form</h1>
+                <form class="max-w-lg mx-auto mt-8" action="{{ route('guests.store') }}" method="POST">
+                    @csrf
+                    <div class="mb-4">
+                      <label class="block text-gray-700 font-bold mb-2" for="name">Name</label>
+                      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" name="name" type="text" placeholder="John Doe">
+                    </div>
+                    <div class="mb-4">
+                      <label class="block text-gray-700 font-bold mb-2" for="address">Address</label>
+                      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="address" name="address" type="text" placeholder="123 Main St">
+                    </div>
+                    <div class="mb-4">
+                      <label class="block text-gray-700 font-bold mb-2" for="phone_number">Phone Number</label>
+                      <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="phone_number" name="phone_number" type="tel" placeholder="(555) 555-5555">
+                    </div>
+                    <div class="mb-4">
+                      <label class="block text-gray-700 font-bold mb-2" for="note">Note</label>
+                      <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="note" name="note" placeholder="Enter your note here"></textarea>
+                    </div>
+                    <div class="flex items-center justify-between">
+                      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Save
+                      </button>
+                    </div>
+                  </form>
             </div>
         </div>
     </body>
